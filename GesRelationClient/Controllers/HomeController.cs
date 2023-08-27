@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.WebUtilities;
 using System.Globalization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Localization;
+using FastReport;
+using Microsoft.AspNetCore.Hosting.Server;
+using GesRelationClient.Services;
 
 namespace GesRelationClient.Controllers
 {
@@ -14,6 +17,8 @@ namespace GesRelationClient.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+
+
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -65,6 +70,7 @@ namespace GesRelationClient.Controllers
             var v = CultureInfo.CurrentCulture.Name;
             return Redirect(returnUrl);
         }
+
 
 
         public IActionResult Privacy()

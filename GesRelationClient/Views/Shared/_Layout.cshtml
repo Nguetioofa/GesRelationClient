@@ -25,16 +25,19 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Client" asp-action="Index">Clients</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Appel" asp-action="Index">Appels</a>
-                        </li>
+                        @if ((await AuthorizationService.AuthorizeAsync(User, "EmployeOnly")).Succeeded)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Appel" asp-action="Index">Gérer les Appels</a>
+                            </li>
+                        }
                         @if ((await AuthorizationService.AuthorizeAsync(User, "ManagerOnly")).Succeeded)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Rapport" asp-action="Index">Rapport</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Client" asp-action="Index">Gérer les Clients</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Rapport" asp-action="Index">Gérer le Rapport</a>
                             </li>
                         }
 

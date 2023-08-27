@@ -35,14 +35,14 @@
                 <td>@client.Adresse</td>
                 <td>@client.CodePostal</td>
                 <td>@client.Pays</td>
-                <td>@client.DateNaissance.ToShortDateString()</td>
+                <td>@client.DateNaissance</td>
                 <td>
                     <div class="dropdown">
                         <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Actions
                         </button>
                         <ul class="dropdown-menu">
-                            <li><h6 class="dropdown-header">Changer le statut</h6></li>
+                            <li><h6 class="dropdown-header">Effectuer une action</h6></li>
                             <li><a class="dropdown-item" asp-action="Edit" asp-controller="Client" asp-route-id="@client.ClientId">Modifier</a></li>
                             <li><a class="dropdown-item" asp-action="Delete" asp-controller="Client" asp-route-id="@client.ClientId">Supprimer</a></li>
                             <li><a class="dropdown-item" asp-action="Details" asp-controller="Client" asp-route-id="@client.ClientId">Details</a></li>

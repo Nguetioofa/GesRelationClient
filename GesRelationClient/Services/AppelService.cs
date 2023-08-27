@@ -29,7 +29,7 @@ namespace GesRelationClient.Services
                         entity.Description
                     };
 
-                    var rowsAffected = await connection.ExecuteAsync("CreateAppel", parameters, commandType: CommandType.StoredProcedure);
+                    var rowsAffected = await connection.ExecuteAsync("InsertAppelClient", parameters, commandType: CommandType.StoredProcedure);
                     return rowsAffected > 0;
                 }
             }
@@ -128,7 +128,7 @@ namespace GesRelationClient.Services
             {
                 using (var connection = _dbConnectionManager.GetOpenConnection())
                 {
-                    var totalClients = await connection.ExecuteScalarAsync<int>("GetTotalClients", commandType: CommandType.StoredProcedure);
+                    var totalClients = await connection.ExecuteScalarAsync<int>("GetTotalAppelsClients", commandType: CommandType.StoredProcedure);
                     return totalClients;
                 }
             }
@@ -153,12 +153,13 @@ namespace GesRelationClient.Services
                         entity.Description
                     };
 
-                    var rowsAffected = await connection.ExecuteAsync("UpdateAppel", parameters, commandType: CommandType.StoredProcedure);
+                    var rowsAffected = await connection.ExecuteAsync("UpdateAppelClient", parameters, commandType: CommandType.StoredProcedure);
                     return rowsAffected > 0;
                 }
             }
-            catch 
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.ToString());
                 return false;
             }
         }

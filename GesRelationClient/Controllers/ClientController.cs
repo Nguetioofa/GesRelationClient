@@ -8,7 +8,7 @@ using System.Drawing.Printing;
 
 namespace GesRelationClient.Controllers
 {
-    [Authorize]
+    [Authorize("ManagerOnly")]
     public class ClientController : Controller
     {
         IRepositorie<Client> _clientService;

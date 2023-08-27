@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GesRelationClient.Models.Appel>
+﻿@model AppelListPagedViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -9,51 +9,79 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+
+<table class="table table-striped">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.AppelId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ClientId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateAppel)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Objet)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th></th>
+            <th scope="col">ID</th>
+            <th scope="col">Client ID</th>
+            <th scope="col">Date d'appel</th>
+            <th scope="col">Objet</th>
+            <th scope="col">Description</th>
+            <th scope="col">Action</th>
+
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AppelId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ClientId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateAppel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Objet)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (var appel in Model.apples)
+        {
+            <tr>
+                <td>@appel.AppelId</td>
+                <td>@appel.ClientId</td>
+                <td>@appel.DateAppel.ToShortDateString()</td>
+                <td>@appel.Objet</td>
+                <td>@appel.Description</td>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Actions
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><h6 class="dropdown-header">Effectuer une action</h6></li>
+                            <li><a class="dropdown-item" asp-action="Edit" asp-controller="Appel" asp-route-id="@appel.AppelId">Modifier</a></li>
+                            <li><a class="dropdown-item" asp-action="Delete" asp-controller="Appel" asp-route-id="@appel.AppelId">Supprimer</a></li>
+                            <li><a class="dropdown-item" asp-action="Details" asp-controller="Appel" asp-route-id="@appel.AppelId">Details</a></li>
+
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+<div class="pagination">
+    @for (int i = 1; i <= Model.TotalPages; i++)
+    {
+        if (i == Model.CurrentPage)
+        {
+            <span>@i</span>
+        }
+        else
+        {
+            <a href="@Url.Action("Index", new { page = i })">@i</a>
+        }
+    }
+</div>
+
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+    }
+
+        .pagination a,
+        .pagination span {
+            display: block;
+            margin: 0 5px;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            text-decoration: none;
+            color: #000;
+        }
+
+            .pagination a:hover {
+                background-color: #eee;
+            }
+
+</style>

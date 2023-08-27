@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="08/26/2023 22:29:06" ReportInfo.Modified="08/27/2023 13:22:54" ReportInfo.CreatorVersion="2023.2.0.0">
+  <Dictionary>
+    <BusinessObjectDataSource Name="AppelList" ReferenceName="AppelListRef" DataType="System.Int32" Enabled="true">
+      <Column Name="AppelId" DataType="System.Int32"/>
+      <Column Name="ClientId" DataType="System.Int32"/>
+      <Column Name="DateAppel" DataType="System.DateTime"/>
+      <Column Name="Objet" DataType="System.String"/>
+      <Column Name="Description" DataType="System.String"/>
+    </BusinessObjectDataSource>
+    <BusinessObjectDataSource Name="ClientList" ReferenceName="ClientListRef" DataType="System.Int32" Enabled="true">
+      <Column Name="ClientId" DataType="System.Int32"/>
+      <Column Name="NomClient" DataType="System.String"/>
+      <Column Name="PrenomClient" DataType="System.String"/>
+      <Column Name="Adresse" DataType="System.String"/>
+      <Column Name="CodePostal" DataType="System.String"/>
+      <Column Name="Pays" DataType="System.String"/>
+      <Column Name="DateNaissance" DataType="System.DateTime"/>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="37.8">
+      <TextObject Name="Text1" Left="255.15" Top="9.45" Width="113.4" Height="18.9" Text="Rapport clients" HorzAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text29" Left="585.9" Top="9.45" Width="113.4" Height="18.9" Text="[Date]" HorzAlign="Center" Font="Arial, 10pt"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="41.8" Width="718.2" Height="28.35">
+      <TableObject Name="Table1" Left="9.45" Top="9.45" Width="699.57" Height="18.9" Border.Lines="All">
+        <TableColumn Name="Column1" Width="108.27"/>
+        <TableColumn Name="Column2" Width="98.55"/>
+        <TableColumn Name="Column3" Width="98.55"/>
+        <TableColumn Name="Column4" Width="98.55"/>
+        <TableColumn Name="Column5" Width="98.55"/>
+        <TableColumn Name="Column6" Width="98.55"/>
+        <TableColumn Name="Column7" Width="98.55"/>
+        <TableRow Name="Row1">
+          <TableCell Name="Cell1" Font="Arial, 10pt">
+            <TextObject Name="Text3" Width="66.15" Height="18.9" Text="ClientId" HorzAlign="Center" Font="Arial, 10pt"/>
+            <TextObject Name="Text5" Left="103.95" Width="94.5" Height="18.9" Text="NomClient" HorzAlign="Center" Font="Arial, 10pt"/>
+          </TableCell>
+          <TableCell Name="Cell2" Font="Arial, 10pt"/>
+          <TableCell Name="Cell3" Font="Arial, 10pt">
+            <TextObject Name="Text7" Width="94.5" Height="18.9" Text="PrenomClient" HorzAlign="Center" Font="Arial, 10pt"/>
+            <TextObject Name="Text9" Left="94.5" Width="94.5" Height="18.9" Text="Adresse" HorzAlign="Center" Font="Arial, 10pt"/>
+          </TableCell>
+          <TableCell Name="Cell4" Font="Arial, 10pt"/>
+          <TableCell Name="Cell5" Font="Arial, 10pt">
+            <TextObject Name="Text11" Width="94.5" Height="18.9" Text="CodePostal" HorzAlign="Center" Font="Arial, 10pt"/>
+            <TextObject Name="Text13" Left="94.5" Width="94.5" Height="18.9" Text="Pays" HorzAlign="Center" Font="Arial, 10pt"/>
+          </TableCell>
+          <TableCell Name="Cell6" Font="Arial, 10pt"/>
+          <TableCell Name="Cell7" Font="Arial, 10pt">
+            <TextObject Name="Text15" Width="94.5" Height="18.9" Text="Description" HorzAlign="Center" Font="Arial, 10pt"/>
+          </TableCell>
+        </TableRow>
+      </TableObject>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="74.15" Width="718.2" Height="19.9" DataSource="ClientList">
+      <TableObject Name="Table2" Left="9.45" Width="699.57" Height="19.9" Border.Lines="All">
+        <TableColumn Name="Column8" Width="108.27"/>
+        <TableColumn Name="Column9" Width="98.55"/>
+        <TableColumn Name="Column10" Width="98.55"/>
+        <TableColumn Name="Column11" Width="98.55"/>
+        <TableColumn Name="Column12" Width="98.55"/>
+        <TableColumn Name="Column13" Width="98.55"/>
+        <TableColumn Name="Column14" Width="98.55"/>
+        <TableRow Name="Row2" Height="19.9">
+          <TableCell Name="Cell8" Font="Arial, 10pt">
+            <TextObject Name="Text2" Width="37.8" Height="18.9" Text="[ClientList.ClientId]" HorzAlign="Center" Font="Arial, 10pt"/>
+            <LineObject Name="Line8" Left="75.6" Top="18.9" Height="-37.8"/>
+          </TableCell>
+          <TableCell Name="Cell9" Font="Arial, 10pt">
+            <TextObject Name="Text4" Width="94.5" Height="18.9" Text="[ClientList.NomClient]" HorzAlign="Center" Font="Arial, 10pt"/>
+          </TableCell>
+          <TableCell Name="Cell10" Font="Arial, 10pt">
+            <TextObject Name="Text6" Width="94.5" Height="18.9" Text="[ClientList.PrenomClient]" HorzAlign="Center" Font="Arial, 10pt"/>
+            <LineObject Name="Line9" Top="18.9" Height="-37.8"/>
+          </TableCell>
+          <TableCell Name="Cell11" Font="Arial, 10pt">
+            <TextObject Name="Text8" Width="94.5" Height="18.9" Text="[ClientList.Adresse]" HorzAlign="Center" Font="Arial, 10pt"/>
+            <LineObject Name="Line10" Top="18.9" Height="-37.8"/>
+          </TableCell>
+          <TableCell Name="Cell12" Font="Arial, 10pt">
+            <TextObject Name="Text10" Width="94.5" Height="18.9" Text="[ClientList.CodePostal]" HorzAlign="Center" Font="Arial, 10pt"/>
+            <LineObject Name="Line11" Top="18.9" Height="-37.8"/>
+            <LineObject Name="Line12" Left="94.5" Top="18.9" Height="-37.8"/>
+          </TableCell>
+          <TableCell Name="Cell13" Font="Arial, 10pt">
+            <TextObject Name="Text12" Width="94.5" Height="18.9" Text="[ClientList.Pays]" HorzAlign="Center" Font="Arial, 10pt"/>
+            <LineObject Name="Line13" Left="94.5" Top="18.9" Height="-37.8"/>
+          </TableCell>
+          <TableCell Name="Cell14" Text="[ClientList.DateNaissance]" Font="Arial, 10pt"/>
+        </TableRow>
+      </TableObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="98.05" Width="718.2" Height="28.35">
+      <TextObject Name="Text28" Left="604.8" Top="9.45" Width="94.5" Height="18.9" Text="[Page]" HorzAlign="Center" Font="Arial, 10pt"/>
+    </PageFooterBand>
+  </ReportPage>
+  <ReportPage Name="Page2" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle2" Width="718.2" Height="37.8">
+      <TextObject Name="Text27" Left="595.35" Top="9.45" Width="94.5" Height="18.9" Text="[Date]" Font="Arial, 10pt"/>
+      <TextObject Name="Text30" Left="226.8" Top="9.45" Width="179.55" Height="18.9" Text="Rapport Appels" HorzAlign="Center" Font="Arial, 10pt"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader2" Top="41.8" Width="718.2" Height="37.8">
+      <ContainerObject Name="Container1" Width="699.3" Height="37.8" Border.Lines="All" Fill.Color="DodgerBlue">
+        <TextObject Name="Text17" Left="9.45" Top="9.45" Width="56.7" Height="18.9" Text="AppelId" HorzAlign="Center" Font="Arial, 10pt" TextFill.Color="White"/>
+        <TextObject Name="Text19" Left="85.05" Top="9.45" Width="56.7" Height="18.9" Text="ClientId" HorzAlign="Center" Font="Arial, 10pt" TextFill.Color="White"/>
+        <TextObject Name="Text21" Left="160.65" Top="9.45" Width="94.5" Height="18.9" Text="DateAppel" HorzAlign="Center" Font="Arial, 10pt" TextFill.Color="White"/>
+        <TextObject Name="Text23" Left="274.05" Top="9.45" Width="94.5" Height="18.9" Text="Objet" HorzAlign="Center" Font="Arial, 10pt" TextFill.Color="White"/>
+        <TextObject Name="Text25" Left="396.9" Top="9.45" Width="94.5" Height="18.9" Text="Description" HorzAlign="Center" Font="Arial, 10pt" TextFill.Color="White"/>
+      </ContainerObject>
+    </PageHeaderBand>
+    <DataBand Name="Data2" Top="83.6" Width="718.2" Height="28.35" DataSource="AppelList">
+      <TextObject Name="Text16" Left="9.45" Top="9.45" Width="56.7" Height="18.9" Text="[AppelList.AppelId]" Font="Arial, 10pt"/>
+      <TextObject Name="Text18" Left="85.05" Top="9.45" Width="56.7" Height="18.9" Text="[AppelList.ClientId]" Font="Arial, 10pt"/>
+      <TextObject Name="Text20" Left="160.65" Top="9.45" Width="94.5" Height="18.9" Text="[AppelList.DateAppel]" Format="Date" Format.Format="d" Font="Arial, 10pt"/>
+      <TextObject Name="Text22" Left="274.05" Top="9.45" Width="94.5" Height="18.9" Text="[AppelList.Objet]" Font="Arial, 10pt"/>
+      <TextObject Name="Text24" Left="396.9" Top="9.45" Width="292.95" Height="18.9" Text="[AppelList.Description]" Font="Arial, 10pt"/>
+      <LineObject Name="Line4" Left="378" Top="28.35" Height="-66.15"/>
+      <LineObject Name="Line5" Left="264.6" Top="28.35" Height="-66.15"/>
+      <LineObject Name="Line6" Left="151.2" Top="28.35" Height="-66.15"/>
+      <LineObject Name="Line7" Left="75.6" Top="28.35" Height="-66.15"/>
+      <ContainerObject Name="Container2" Width="699.3" Height="28.35" Border.Lines="All"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter2" Top="115.95" Width="718.2" Height="28.35">
+      <TextObject Name="Text26" Left="642.6" Top="9.45" Width="94.5" Height="18.9" Text="[Page]" Font="Arial, 10pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

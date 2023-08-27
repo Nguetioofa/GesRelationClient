@@ -1,17 +1,18 @@
 ﻿using GesRelationClient.Models;
 using GesRelationClient.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using NuGet.Protocol.Core.Types;
 
 namespace GesRelationClient.Controllers
 {
+    [Authorize]
     public class AppelController : Controller
     {
-        IRepositorie<Appel> _repositorie;
-        public AppelController(IRepositorie<Appel> repositorie)
+        IRepositorie<Appel> _appelService;
+        public AppelController(IRepositorie<Appel> appelService)
         {
-            _repositorie = repositorie;
+            _appelService = appelService;
         }
 
 
@@ -19,8 +20,8 @@ namespace GesRelationClient.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(int page = 1, int pageSize = 10)
         {
-            var apples = await _repositorie.GetPaged(page, pageSize);
-            var totalAppel = await _repositorie.GetTotal();
+            var apples = await _appelService.GetPaged(page, pageSize);
+            var totalAppel = await _appelService.GetTotal();
             var totalPages = (int)Math.Ceiling((double)totalAppel / pageSize);
 
             var model = new AppelListPagedViewModel
@@ -35,11 +36,12 @@ namespace GesRelationClient.Controllers
 
 
         // GET: AppelController/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
-        }
+            var appel = await _appelService.GetById(id);
 
+            return View(appel);
+        }
         // GET: AppelController/Create
         public ActionResult Create()
         {
@@ -49,43 +51,65 @@ namespace GesRelationClient.Controllers
         // POST: AppelController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create(Appel appel)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                var result = await _appelService.Create(appel);
+                if (result)
+                {
+                    return RedirectToAction(nameof(Index));
+
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = "Echec";
+                    return View(appel);
+                }
             }
-            catch
-            {
-                return View();
-            }
+
+            ViewBag.ErrorMessage = "Veuillez remplir tous les champs.";
+            return View(appel);
         }
 
         // GET: AppelController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            var appel = await _appelService.GetById(id);
+
+            return View(appel);
         }
 
         // POST: AppelController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(Appel appel)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                var result = await _appelService.Update(appel);
+                if (result)
+                {
+                    return RedirectToAction(nameof(Index));
+
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = "Echec";
+                    return View(appel);
+                }
             }
-            catch
-            {
-                return View();
-            }
+
+            ViewBag.ErrorMessage = "Veuillez remplir tous les champs.";
+            return View(appel);
         }
 
         // GET: AppelController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            var appel = await _appelService.GetById(id);
+
+            return View(appel);
         }
 
         // POST: AppelController/Delete/5
