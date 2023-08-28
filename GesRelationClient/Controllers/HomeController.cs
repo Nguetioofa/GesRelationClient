@@ -30,18 +30,9 @@ namespace GesRelationClient.Controllers
 
         public IActionResult Index()
         {
-            //var v = CultureInfo.CurrentCulture.Name;
-
-            //string lang = HttpContext.Request.Query["lang"];
-
-            //if (!string.IsNullOrEmpty(lang))
-            //{
-            //    SetLanguage(lang);
-            //}
-
             return View();
         }
-
+        [AllowAnonymous]
         [HttpPost]
         public IActionResult SetLanguage(string culture, string returnUrl)
         {
@@ -53,37 +44,6 @@ namespace GesRelationClient.Controllers
 
             return LocalRedirect(returnUrl);
         }
-
-        //private void SetLanguage(string lang)
-        //{
-
-        //    CultureInfo culture;
-        //    try
-        //    {
-        //        culture = new CultureInfo(lang);
-        //    }
-        //    catch (CultureNotFoundException)
-        //    {
-        //        culture = new CultureInfo("fr");
-        //    }
-
-        //    CultureInfo.CurrentCulture = culture;
-        //    CultureInfo.CurrentUICulture = culture;
-        //}
-
-        //[HttpGet]
-        //public IActionResult ChangeLanguage(string lang)
-        //{
-        //    SetLanguage(lang);
-
-        //    string returnUrl = HttpContext.Request.Headers["Referer"].ToString();
-        //    if (string.IsNullOrEmpty(returnUrl))
-        //    {
-        //        returnUrl = "/";
-        //    }
-        //    return Redirect(returnUrl);
-        //}
-
 
 
         public IActionResult Privacy()

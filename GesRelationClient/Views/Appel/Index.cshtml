@@ -1,4 +1,5 @@
 ﻿@model AppelListPagedViewModel
+@inject IViewLocalizer Localizer
 
 @{
     ViewData["Title"] = "Index";
@@ -14,11 +15,11 @@
     <thead>
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">Client ID</th>
-            <th scope="col">Date d'appel</th>
-            <th scope="col">Objet</th>
-            <th scope="col">Description</th>
-            <th scope="col">Action</th>
+            <th scope="col">@Localizer["Client ID"]</th>
+            <th scope="col">@Localizer["Date d'appel"]</th>
+            <th scope="col">@Localizer["Objet"]</th>
+            <th scope="col">@Localizer["Description"]</th>
+            <th scope="col">@Localizer["Action"]</th>
 
         </tr>
     </thead>
@@ -34,13 +35,13 @@
                 <td>
                     <div class="dropdown">
                         <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Actions
+                            @Localizer["Action"]
                         </button>
                         <ul class="dropdown-menu">
-                            <li><h6 class="dropdown-header">Effectuer une action</h6></li>
-                            <li><a class="dropdown-item" asp-action="Edit" asp-controller="Appel" asp-route-id="@appel.AppelId">Modifier</a></li>
-                            <li><a class="dropdown-item" asp-action="Delete" asp-controller="Appel" asp-route-id="@appel.AppelId">Supprimer</a></li>
-                            <li><a class="dropdown-item" asp-action="Details" asp-controller="Appel" asp-route-id="@appel.AppelId">Details</a></li>
+                            <li><h6 class="dropdown-header">@Localizer["Effectuer une action"]</h6></li>
+                            <li><a class="dropdown-item" asp-action="Edit" asp-controller="Appel" asp-route-id="@appel.AppelId">@Localizer["Modifier"]</a></li>
+                            <li><a class="dropdown-item" asp-action="Delete" asp-controller="Appel" asp-route-id="@appel.AppelId">@Localizer["Supprimer"]</a></li>
+                            <li><a class="dropdown-item" asp-action="Details" asp-controller="Appel" asp-route-id="@appel.AppelId">@Localizer["Details"]</a></li>
 
                         </ul>
                     </div>

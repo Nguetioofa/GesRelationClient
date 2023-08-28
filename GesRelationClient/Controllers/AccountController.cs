@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Localization;
 
 
 namespace GesRelationClient.Controllers
@@ -12,10 +13,12 @@ namespace GesRelationClient.Controllers
     public class AccountController : Controller 
     {
         private readonly EmployeService _employeService;
+        private readonly IStringLocalizer<AccountController> _localizer;
 
-        public AccountController(EmployeService employeService)
+        public AccountController(EmployeService employeService, IStringLocalizer<AccountController> localizer)
         {
             _employeService = employeService;
+            _localizer = localizer;
         }
 
        //[HttpGet]
@@ -34,7 +37,7 @@ namespace GesRelationClient.Controllers
 
                 if (result is null)
                 {
-                    ViewBag.ErrorMessage = "Nom d'utilisateur ou mot de passe incorrect.";
+                    ViewBag.ErrorMessage = _localizer["Nom d'utilisateur ou mot de passe incorrect."];
                     return View(model);
                 }
 
@@ -50,7 +53,7 @@ namespace GesRelationClient.Controllers
                 var authentificationPropertie = new AuthenticationProperties
                 {
                     IsPersistent = true,
-                    ExpiresUtc = DateTime.UtcNow.AddDays(1),
+                    ExpiresUtc = DateTime.Now.AddDays(1),
                 };
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authentificationPropertie);
@@ -60,7 +63,7 @@ namespace GesRelationClient.Controllers
             }
             else
             {
-                ViewBag.ErrorMessage = "Veuillez remplir tous les champs.";
+                ViewBag.ErrorMessage = _localizer["Veuillez remplir tous les champs."];
                 return View(model);
             }
         }
