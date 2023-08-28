@@ -2,6 +2,7 @@
 @using System.Security.Claims;
 @using Microsoft.AspNetCore.Mvc;
 @using Microsoft.AspNetCore.Authentication.Cookies;
+@inject IViewLocalizer Localizer
 
 @{
 
@@ -10,13 +11,25 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    <div class="col-md-3 d-flex text-end">
-        @UserName <a class="btn btn-outline-primary" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
-    </div>
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @UserName
+        </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+
+        <li>
+            <a class="btn btn-outline-primary" asp-area="" asp-controller="Account" asp-action="Logout"> @Localizer["Deconnexion"]</a>
+        </li>
+    </ul>
+
 }
 else
 {
-    <div class="col-md-3 d-flex text-end mx-2">
-        <a class="btn btn-outline-success" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
-    </div>
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a class="btn btn-outline-success" asp-area="" asp-controller="Account" asp-action="Login"> @Localizer["Connexion"] </a>
+        </li>
+    </ul>
+
 }

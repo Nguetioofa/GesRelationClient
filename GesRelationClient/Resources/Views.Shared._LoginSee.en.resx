@@ -117,40 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Action" xml:space="preserve">
-    <value>Action</value>
+  <data name="Connexion" xml:space="preserve">
+    <value>Login</value>
   </data>
-  <data name="Adresse" xml:space="preserve">
-    <value>Adress</value>
-  </data>
-  <data name="Ajouter" xml:space="preserve">
-    <value>Add new</value>
-  </data>
-  <data name="Code Postal" xml:space="preserve">
-    <value>Postal code</value>
-  </data>
-  <data name="Date de Naissance" xml:space="preserve">
-    <value>Date of birth</value>
-  </data>
-  <data name="Details" xml:space="preserve">
-    <value>Details</value>
-  </data>
-  <data name="Effectuer une action" xml:space="preserve">
-    <value>Perform an action</value>
-  </data>
-  <data name="Modifier" xml:space="preserve">
-    <value>modify</value>
-  </data>
-  <data name="Nom" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="Pays" xml:space="preserve">
-    <value>Country</value>
-  </data>
-  <data name="Prénom" xml:space="preserve">
-    <value>LastName</value>
-  </data>
-  <data name="Supprimer" xml:space="preserve">
-    <value>DELETE</value>
+  <data name="Deconnexion" xml:space="preserve">
+    <value>Logout</value>
   </data>
 </root>

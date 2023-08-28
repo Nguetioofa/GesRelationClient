@@ -120,6 +120,9 @@
   <data name="Action" xml:space="preserve">
     <value>Action</value>
   </data>
+  <data name="Ajouter" xml:space="preserve">
+    <value>Add new</value>
+  </data>
   <data name="Client ID" xml:space="preserve">
     <value>Customer ID</value>
   </data>
