@@ -116,18 +116,14 @@ namespace GesRelationClient.Controllers
         }
 
         // POST: ClientController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        [HttpGet]
+        public async Task<IActionResult> DeleteConfirme(int id)
         {
-            try
-            {
+
+                var resu = await _clientService.Delete(id);
+
                 return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+
         }
     }
 }

@@ -42,9 +42,7 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
     </dl>
-    
-    <form asp-action="Delete">
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+
+    <a asp-route-id="@Model.AppelId" asp-action="DeleteConfirme" class="btn btn-danger"> Delete </a>|
+    <a asp-action="Index">Back to List</a>
 </div>

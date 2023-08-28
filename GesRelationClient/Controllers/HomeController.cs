@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Localization;
 using FastReport;
 using Microsoft.AspNetCore.Hosting.Server;
 using GesRelationClient.Services;
+using Microsoft.Extensions.Localization;
 
 namespace GesRelationClient.Controllers
 {
@@ -17,59 +18,71 @@ namespace GesRelationClient.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IStringLocalizer<HomeController> _localizer;
 
 
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IStringLocalizer<HomeController> localizer)
         {
+            _localizer = localizer;
             _logger = logger;
         }
 
         public IActionResult Index()
         {
-            var v = CultureInfo.CurrentCulture.Name;
+            //var v = CultureInfo.CurrentCulture.Name;
 
-            string lang = HttpContext.Request.Query["lang"];
+            //string lang = HttpContext.Request.Query["lang"];
 
-            if (!string.IsNullOrEmpty(lang))
-            {
-                SetLanguage(lang);
-            }
+            //if (!string.IsNullOrEmpty(lang))
+            //{
+            //    SetLanguage(lang);
+            //}
 
             return View();
         }
 
-        private void SetLanguage(string lang)
+        [HttpPost]
+        public IActionResult SetLanguage(string culture, string returnUrl)
         {
-            var v = CultureInfo.CurrentCulture.Name;
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+            );
 
-            CultureInfo culture;
-            try
-            {
-                culture = new CultureInfo(lang);
-            }
-            catch (CultureNotFoundException)
-            {
-                culture = new CultureInfo("fr");
-            }
-            HttpContext.Session.SetString("lang", lang);
-            CultureInfo.CurrentCulture = culture;
-            CultureInfo.CurrentUICulture = culture;
+            return LocalRedirect(returnUrl);
         }
 
-        [HttpGet]
-        public IActionResult ChangeLanguage(string lang)
-        {
-            SetLanguage(lang);
+        //private void SetLanguage(string lang)
+        //{
 
-            string returnUrl = HttpContext.Request.Headers["Referer"].ToString();
-            if (string.IsNullOrEmpty(returnUrl))
-            {
-                returnUrl = "/";
-            }
-            var v = CultureInfo.CurrentCulture.Name;
-            return Redirect(returnUrl);
-        }
+        //    CultureInfo culture;
+        //    try
+        //    {
+        //        culture = new CultureInfo(lang);
+        //    }
+        //    catch (CultureNotFoundException)
+        //    {
+        //        culture = new CultureInfo("fr");
+        //    }
+
+        //    CultureInfo.CurrentCulture = culture;
+        //    CultureInfo.CurrentUICulture = culture;
+        //}
+
+        //[HttpGet]
+        //public IActionResult ChangeLanguage(string lang)
+        //{
+        //    SetLanguage(lang);
+
+        //    string returnUrl = HttpContext.Request.Headers["Referer"].ToString();
+        //    if (string.IsNullOrEmpty(returnUrl))
+        //    {
+        //        returnUrl = "/";
+        //    }
+        //    return Redirect(returnUrl);
+        //}
 
 
 
